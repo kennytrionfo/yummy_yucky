@@ -141,8 +141,7 @@ Show the restaurant form and the restaurant under the restaurant show page:
 							Check it in browser. 
 
 
-
-
+#------------ did this but not sure of we need or what order should go in here----------Kenny Trionfo---3/5/2015--------
 Create a form partial: 
 	In view/restaurants create the form partial _form.html.erb
 	Read documentation on simple_form
@@ -175,6 +174,11 @@ Create a form partial:
 
 	commit
 
+
++++++++++++++++++++++++++++++++++3/5/2015
+Stopped here. thinking it might be easier to just take the pinboard app and add the model over it and a landing page. 
++++++++++++++++++++++++++++++++++++++++++++
+
 Add a flash message for when a new restaurant is created: 
 	In view/layouts/application.html.erb
 	In the <body> tag and above the <%=yield: 
@@ -189,7 +193,7 @@ Add a flash message for when a new restaurant is created:
 	Because we'll have to do this for a few of our cruds, create a private method called find_pin for a few of the crud actions in restaurants_controller, under private, so:
 	private 
 	def find_pin
-		@restaurant = restaurant.find(params[:id])
+		@restaurant = restaurant.find(params[:id])  
 	end
 	Then at top add following before action: 
 	before_action :find_pin, only: [:show, :edit, :update, :destroy]

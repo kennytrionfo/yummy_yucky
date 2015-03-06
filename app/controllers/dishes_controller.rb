@@ -1,9 +1,10 @@
 class DishesController < ApplicationController
 
 	before_action :set_restaurant
+	before_action :set_dish, except: [:create]
 
 		def create
-			@dish = @restaurant.dish.create(dish_params)
+			@dish = @restaurant.dishes.create(dish_params)
 			redirect_to @restaurant 
 		end
 
@@ -15,7 +16,7 @@ class DishesController < ApplicationController
 		end
 
 		def dish_params
-			params[:dish].permit(:content)
+			params[:dish].permit(:comments)
 		end
 
 

@@ -80,7 +80,7 @@ Generate a controller for your dish:
 Give yourself the ability to create new restaurant with new dishes: 
 	In dishes_controller.rb, create a create method that creates a new restaurant variable/instance by setting it to a new Restaurant that you find by the restaurant_id key. 
 	Then create a method that creates a new todo item by .. 
-	with two private methods, one to set the todo list and one to create todo item params like: 
+	with two private methods, one to set the restaurant and one to create todo item params like: 
 	
 	before_action :set_restaurant
 
@@ -100,7 +100,7 @@ Give yourself the ability to create new restaurant with new dishes:
 		params[:dish].permit(:content)
 	end
 
-Now create the form to actually create a new todo list: 
+Now create the form to actually create a new restaurant: 
 	Create two partials (new files) in views/dishes:
 	1 _form.html.erb 
 	<%= form_for([@restaurant, @restaurant.dishes.build]) do |f| %>
@@ -111,33 +111,34 @@ Now create the form to actually create a new todo list:
 	2 _dish.html.erb
 	<p> <%= dish.content %></p>
 
-Show the todo form and the todo list items under the todo list show page:
-	Create a div that renders the todo list from the _dishes.html.erb file. Under the description: 
+Show the restaurant form and the restaurant under the restaurant show page:
+	Create a div that renders the restaurant from the _dishes.html.erb file. Under the description: 
 	<div id="dishes_wrapper">
 		<%= render @restaurant.dishes %>
 	</div>
-	Add another div inside of that div that renders the todo item's form: 
+	Add another div inside of that div that renders the 'create a new dish' form: 
 	<div id="form">
 		<%= render "dishes/form" %>
 	</div>
-	Test the show page that it shows and that you can make new todo items in a list. 
+	Test the show page that it shows and that you can make new dishes in a restaurant. 
 
-Add a delete button for the items: 
-	Back in _dish.html.erb: 
-	<%= link_to "Delete", restaurant_dish_path(@restaurant, dish.id), method: :delete, data: {confirm: "Are you sure?"} %>
+						#------------don't this we need this at least here. it's more for the todo list app----------Kenny Trionfo---3/5/2015--------
+						Add a delete button for the dishes: 
+							Back in _dish.html.erb: 
+							<%= link_to "Delete", restaurant_dish_path(@restaurant, dish.id), method: :delete, data: {confirm: "Are you sure?"} %>
 
-Make it so that the app can take a delete request for an item and route it to the right method: 
-	In todo items controller:
-	def destroy
-		@dish = @restaurant.dishes.find(params[:id])
-		if @dish.destroy
-			flash[:success] = "Todo List item was deleted"
-		else
-			flash[:error] = "Todo List item could not be deleted dude."	
-		end
-		redirect_to @restaurant	
-	end
-	Check it in browser. 
+						Make it so that the app can take a delete request for an item and route it to the right method: 
+							In dishes controller:
+							def destroy
+								@dish = @restaurant.dishes.find(params[:id])
+								if @dish.destroy
+									flash[:success] = "restaurant item was deleted"
+								else
+									flash[:error] = "restaurant item could not be deleted dude."	
+								end
+								redirect_to @restaurant	
+							end
+							Check it in browser. 
 
 
 

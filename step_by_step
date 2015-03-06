@@ -47,8 +47,6 @@ If you want to have the index page the Home Page, make the root path point to th
 	root 'restaurants#index'
 	commit
 
-
-
 Generate a model for our dishes with these row/attributes - title that's a string, rating a string, comment, text and that references the restaurant: 
 	With: 
 	rails g model dish title:string rating:string comment:text restaurant:references 

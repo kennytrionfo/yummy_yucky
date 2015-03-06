@@ -35,7 +35,7 @@ ALSO COME BACK AND ADD IN HERE INSTRUCTIONS FOR MAKING IT MOBILE READY
 
 Create a restaurant model with controller & views too with a title that's a string and a description that's text or whatever attributes you want: 
 	In console: 
-	rails g scaffold restaurant title:string description:text 
+	rails g scaffold restaurant title:string description:text address:text comments:text
 	commit	
 
 Create & Move the model over to the db: 
@@ -46,6 +46,41 @@ If you want to have the index page the Home Page, make the root path point to th
 	-in routes.rb 
 	root 'restaurants#index'
 	commit
+
+
+
+Generate a model for our dishes with these row/attributes - title that's a string, rating a string, comment, text and that references the restaurant: 
+	With: 
+	rails g model dish title:string rating:string comment:text restaurant:references 
+	rake db:migrate
+	commit  
+
+Do your associations for your models: 
+	Tell the restaurant model that it has many dishs: 
+	In the restaurant.rb file: 
+	has_many :dishs
+
+	Tell the dish model that it belongs to restaurants with: 
+	belongs_to :restaurant
+
+Create some nested routes for our dishes: 
+	In routes.rb file, make restaurants resources a block with dishs resources inside:  
+	resources :restaurants do
+		resources :dishes
+	end
+
+Look at the routes this created: 
+	With: 
+	rake routes
+
+Generate a controller for your dish: 
+	In the console with: 
+	rails g controller dishes
+
+
+
+
+
 
 Create a form partial: 
 	In view/restaurants create the form partial _form.html.erb

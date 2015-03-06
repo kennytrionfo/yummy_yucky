@@ -1,0 +1,8 @@
+Stuff to do: 
+- Add user login functionality (devise).
+- Title bar at top. 
+- Add dishes page. 
+- Add upload pic ability
+- Add auto aligning jquery gem. 
+
+- Deploy to heroku.

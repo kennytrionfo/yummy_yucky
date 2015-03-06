@@ -35,15 +35,17 @@ ALSO COME BACK AND ADD IN HERE INSTRUCTIONS FOR MAKING IT MOBILE READY
 
 Create a restaurant model with controller & views too with a title that's a string and a description that's text or whatever attributes you want: 
 	In console: 
-	rails g scaffold restaurant title:string description:text 	
+	rails g scaffold restaurant title:string description:text 
+	commit	
 
 Create & Move the model over to the db: 
 	rake db:create  
 	rake db:migrate
 
-Make the root path point to the index action in restaurants controller: 
+If you want to have the index page the Home Page, make the root path point to the index action in restaurants controller: 
 	-in routes.rb 
 	root 'restaurants#index'
+	commit
 
 Create a form partial: 
 	In view/restaurants create the form partial _form.html.erb
@@ -75,8 +77,10 @@ Create a form partial:
 	  <%= f.button :submit, class: "btn btn-primary" %>
 	<% end %>
 
+	commit
+
 Add a flash message for when a new restaurant is created: 
-	In view/layouts, 
+	In view/layouts/application.html.erb
 	In the <body> tag and above the <%=yield: 
 	<% flash.each do |name, msg| %>
       <%= content_tag :div, msg, class: "alert alert-info"  %> <!-- this is bootstrap -->
@@ -100,6 +104,7 @@ Create a view for the show action with a new view file in views/restaurant:
 	%h1= @restaurant.title
 	%p= @restaurant.description
 	Refresh, should see flash message "successfully created new pint" as well as title and description. 
+	commit
 
 Now also in this view, add a link back to the home page (root path): 
 	<%= link_to "Back", root_path %>
@@ -133,6 +138,7 @@ Create a new file for the edit page and code for an edit form:
 	<h1>Edit Pin</h1>
 	<%= render 'form' %>
 	<%= link_to "Cancel", pin %>
+	commit
  
 Add a link_to form on the show page like this: 
 	<%= link_to "Edit", edit_pin_path %>
@@ -162,6 +168,7 @@ Add devise gem:
 	rake db:migrate
 	Restart server
 	try localhost:3000/users/sign_up
+	commit
 
 Try a branch here?: 
 	With: 
@@ -189,6 +196,7 @@ Add code to display the user's email to each pin:
 	<%= @pin.user.email %>
 	<br/>
 	Refresh and see. 
+	commit
 
 Update the code in the pins_controller to attach a pin with a current user: 
 	In pins_controller, change the @pin.new in both the new and the create actions to: 
@@ -234,6 +242,8 @@ Add navigation to application.html.erb file. Below body tag:
         </ul>
       <% end %>
     </div>
+
+    commit
 	
 Add a wrapper around the new pin form. 
 	In new.html.erb, add:
@@ -276,6 +286,8 @@ Add paperclip to form also.
 		    <%= link_to pin.title, pin %>
 		  </h2>
 		<% end %>
+
+		commit
 
 Show the user which image they are editing when they are editing it. 
 		In edit.html.erb, above = render 'form' add: 
@@ -350,6 +362,8 @@ Style up the show page with various. should look like this:
 	    </div>
 	  </div>
 	</div>
+
+	commit
 	
 Add the ability to vote on a pin. 
 	Insert acts-as-votable gem: 
@@ -377,6 +391,7 @@ Create some nested routes:
 		redirect_to :back
 	end
 	below the destroy block.
+	commit
 
 In show page add a link_to under the last btn-group.. like so: 
 	<div class="btn-group pull-right">
